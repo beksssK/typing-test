@@ -22,18 +22,26 @@ document.addEventListener('DOMContentLoaded', () => {
     let wordCounter = 0;
 
     writer.oninput = event => {
-        if(writer.value){
-            for(let i = 0; i < writer.value.length; i++){
-                if(wordsArray[wordCounter].substring(0, i + 1) === writer.value){
-                    showRight();
-                } else{
-                    showWrong();
+        console.log(wordsArray.length);
+        if(wordCounter !== wordsArray.length){
+            if(writer.value){
+                for(let i = 0; i < writer.value.length; i++){
+                    if(wordsArray[wordCounter].substring(0, i + 1) === writer.value){
+                        showRight();
+                    } else{
+                        showWrong();
+                    }
                 }
             }
-        }
-        if(!writer.value){
-            removeResult();
+            if(event.data === ' ' && wordsArray[wordCounter] === writer.value.substring(0, writer.value.length -1)){
+                console.log('Wow');
+                writer.value = '';
+                wordCounter++;
+                console.log(wordCounter);
+            }
+            if(!writer.value){
+                removeResult();
+            }
         }
     };
-
 });
