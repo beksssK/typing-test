@@ -31,5 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
-    }
+        if(!writer.value){
+            removeResult();
+        }
+    };
+
 });
