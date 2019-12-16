@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if(writer.value){
             for(let i = 0; i < writer.value.length; i++){
                 if(wordsArray[wordCounter].substring(0, i + 1) === writer.value){
-                    console.log('Right');
+                    showRight();
                 } else{
-                    console.log('Wrong');
+                    showWrong();
                 }
             }
         }
