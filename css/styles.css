@@ -1,0 +1,43 @@
+body{
+    background: #5c5c5c;
+}
+.container{
+    padding: 0 15px;
+    max-width: 1200px;
+}
+.myApp{
+    padding: 10px 30px;
+}
+.textWrapper{
+    max-width: 60%;
+    margin: 0 auto;
+    background: #aaaaaa;
+    padding: 10px 30px;
+    border-radius: 4px;
+}
+.writer{
+    display: flex;
+    justify-content: space-around;
+    max-width: 50%;
+    margin: 0 auto;
+    padding: 10px;
+}
+.writer input{
+    border: 2px solid #aaaaaa;
+    padding: 3px 5px;
+    border-radius: 5px;
+    display: inline-block;
+    width: 60%;
+    height: 20px;
+}
+#result{
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    background-color: #aaa;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    padding: 5px;
+    line-height: 30px;
+}
