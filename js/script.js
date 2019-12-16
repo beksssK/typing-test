@@ -8,4 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
     text.innerText = tempText;
 
     const wordsArray = tempText.split(' ');
+
+    let wordCounter = 0;
+
+    writer.oninput = event => {
+        if(writer.value){
+            for(let i = 0; i < writer.value.length; i++){
+                if(wordsArray[wordCounter].substring(0, i + 1) === writer.value){
+                    console.log('Right');
+                } else{
+                    console.log('Wrong');
+                }
+            }
+        }
+    }
 });
