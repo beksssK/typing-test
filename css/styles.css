@@ -17,10 +17,13 @@ body{
 }
 .writer{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     max-width: 50%;
     margin: 0 auto;
     padding: 10px;
+}
+.writer label{
+    width: 100%;
 }
 .writer input{
     border: 2px solid #aaaaaa;
@@ -40,4 +43,10 @@ body{
     border-radius: 5px;
     padding: 5px;
     line-height: 30px;
+}
+#text .correct{
+    color: green;
+}
+#text .wrong{
+    color: red;
 }
