@@ -5,8 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const secondsE = document.getElementById('seconds');
     const minutesE = document.getElementById('minutes');
     const reset = document.getElementById('reset');
+    const result = document.getElementById('result');
 
-    const tempText = 'And I am not frightened of dying, any time will do, I don\'t mind. Why should I be frightened of dying? There\'s no reason for it, you\'ve gotta go sometime. If you can hear this whispering you are dying. I never said I was frightened of dying.s';
+
+    const tempText = 'And I am not frightened of dying, any time will do, I don\'t mind. Why should I be frightened of dying? There\'s no reason for it, you\'ve gotta go sometime';
     const lettersArray = tempText.split('');
     let words = [];
     for(let i = 0; i < lettersArray.length; i++){
@@ -72,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let words = lettersArray.length / 5;
             let minutes = allSec / 60;
             let wpm = words/minutes;
-            console.log(wpm);
+            result.innerText = `Your wpm is: ${wpm}`;
         }
 
     };

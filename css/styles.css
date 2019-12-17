@@ -35,15 +35,9 @@ body{
     height: 20px;
 }
 #result{
-    display: inline-block;
-    width: 30px;
-    height: 20px;
-    background-color: #aaa;
-    background-size: contain;
-    background-repeat: no-repeat;
-    border-radius: 5px;
-    padding: 5px;
-    line-height: 30px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
 }
 #text .correct{
     color: green;
@@ -52,8 +46,22 @@ body{
     color: red;
 }
 #timer{
+    text-align: center;
     color: #fff;
-    width: 100px;
-    margin: 20px auto;
+    margin: 20px;
     font-size: 23px;
+}
+.button{
+    width: 200px;
+    margin: 2px auto;
+    padding: 5px;
+    text-align: center;
+}
+.btn{
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 18px;
+    background: #666666;
+    color: #fff;
+    text-transform: uppercase;
 }
