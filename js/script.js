@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     const writer = document.getElementById('writer');
     const text = document.getElementById('text');
     const secondsE = document.getElementById('seconds');
@@ -45,22 +44,72 @@ document.addEventListener('DOMContentLoaded', () => {
                 minutesE.innerText = toString(minutes);
                 seconds = 0;
                 secondsE.innerText = toString(seconds);
+                makeText();
+                timerFlag = false;
             });
         }, 1000)
     };
     // text
-    const paragraph = 'And I am not frightened of dying, any time will do, I don\'t mind. Why should I be frightened of dying? There\'s no reason for it, you\'ve gotta go sometime';
-    const lettersArray = paragraph.split('');
-    let words = [];
-    for(let i = 0; i < lettersArray.length; i++){
-        words.push(`<span id=${i}>${lettersArray[i]}</span>`);
-    }
-    text.innerHTML = words.join('');
+    const makeText = () => {
+        const paragraph = 'And I am not frightened of dying, any time will do, I don\'t mind. Why should I be frightened of dying? There\'s no reason for it, you\'ve gotta go sometime';
+        const letters = paragraph.split('');
+        const words = [];
+        for(let i = 0; i < letters.length; i++){
+            words.push(`<span id=${i}>${letters[i]}</span>`);
+        }
+        text.innerHTML = words.join('');
+        return paragraph.split('');
+    };
+    const lettersArray = makeText();
 
     // input
-    const addClass = (elementId, firstClass, secondClass) =>{
+
+
+    const addClass = (elementId, firstClass, secondClass) =>{ //adds classes to span elements in order to color them
         document.getElementById(elementId).classList.add(firstClass, secondClass);
     };
+    const addClassCheck = (event, input, array) => { // logic for checking if we can add certain classes
+        for(let i = 0; i < input.value.length; i++){
+            if(event.data === array[i]){
+                if(i > 0){
+                    let previous = document.getElementById(`${i - 1}`).className;
+                    if(previous !== 'wrong typed' && previous !== 'typed wrong'){
+                        addClass(`${i}`,'correct', 'typed');
+                    } else {
+                        addClass(`${i}`, 'wrong', 'typed');
+                    }
+                } else{
+                    addClass(`${i}`, 'correct', 'typed');
+                }
+            } else {
+                let flag = document.getElementById(`${i}`).className;
+                if(flag !== 'correct typed' && flag !== 'typed correct'){
+                    addClass(`${i}`, 'wrong', 'typed');
+                }
+            }
+        }
+    };
+    const deleteClass = () => { // deletes certain class names
+        let typed = document.getElementsByClassName('typed');
+        let correct;
+        let wrong;
+        for(let j = 0; j < typed.length; j++){
+            if(typed[j].classList.value.indexOf('correct') >= 0){
+                correct = typed[j];
+            } else if(typed[j].classList.value.indexOf('wrong') >= 0){
+                wrong = typed[j];
+
+            }
+        }
+        if(correct && wrong){
+            wrong.classList.remove('wrong');
+        } else if(correct){
+            correct.classList.remove('correct');
+        } else if(wrong){
+            wrong.classList.remove('wrong');
+        }
+    };
+
     let inputTimer = false;
     writer.oninput = event => {
         if(inputTimer && !timerFlag){
@@ -69,44 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if(writer.value.length <= lettersArray.length){
             inputTimer = true;
             if(event.inputType === 'insertText'){
-                for(let i = 0; i < writer.value.length; i++){
-                    if(event.data === lettersArray[i]){
-                        if(i > 0){
-                            let previous = document.getElementById(`${i - 1}`).className;
-                            if(previous !== 'wrong typed' && previous !== 'typed wrong'){
-                                addClass(`${i}`,'correct', 'typed');
-                            } else {
-                                addClass(`${i}`, 'wrong', 'typed');
-                            }
-                        } else{
-                            addClass(`${i}`, 'correct', 'typed');
-                        }
-                    } else {
-                        let flag = document.getElementById(`${i}`).className;
-                        if(flag !== 'correct typed' && flag !== 'typed correct'){
-                            addClass(`${i}`, 'wrong', 'typed');
-                        }
-                    }
-                }
+                addClassCheck(event, writer, lettersArray);
             } else if(event.inputType === 'deleteContentBackward'){
-                let typed = document.getElementsByClassName('typed');
-                let correct;
-                let wrong;
-                for(let j = 0; j < typed.length; j++){
-                    if(typed[j].classList.value.indexOf('correct') >= 0){
-                        correct = typed[j];
-                    } else if(typed[j].classList.value.indexOf('wrong') >= 0){
-                        wrong = typed[j];
-
-                    }
-                }
-                if(correct && wrong){
-                    wrong.classList.remove('wrong');
-                } else if(correct){
-                    correct.classList.remove('correct');
-                } else if(wrong){
-                    wrong.classList.remove('wrong');
-                }
+                deleteClass();
             }
         } else{
             inputTimer = false;
